@@ -8,9 +8,6 @@ var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "+", 
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  window.alert("Click Ok To Continue")
-  window.prompt("How many characters you want it to be?")
-  window.confirm("Are you sure?") 
 
   passwordText.value = password;
   
@@ -18,18 +15,31 @@ function writePassword() {
 }
 function generatePassword() {
     var allCharacters = []
+    var length = window.prompt("How many characters would you like it to be?")
+    var retVal = ""
     var upppercaseConfirm = window.confirm("Would you like uppercase characters?")
     if(upppercaseConfirm == true){
-        allCharacters += uppercaseCharacters
+        allCharacters = allCharacters.concat(uppercaseCharacters)
         console.log(allCharacters)
     }
     var lowercaseConfirm = window.confirm("Would you like lowercase characters")
     if(lowercaseConfirm == true){
-        allCharacters += lowercaseCharacters
+        allCharacters = allCharacters.concat(lowercaseCharacters)
         console.log(allCharacters)
     }
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
+    var numbersConfirm = window.confirm("Would you like numbers?")
+    if(numbersConfirm == true){
+        allCharacters = allCharacters.concat(numbers)
+        console.log(allCharacters)
+
+    }
+    var specialCharactersConfirm = window.confirm("Would you like special characters?")
+    if(specialCharactersConfirm == true)
+        allCharacters = allCharacters.concat(specialCharacters)
+        console.log(allCharacters)
+    for (var i = 0;  i < length; ++i) {
+        retVal += allCharacters[(Math.floor(Math.random() * allCharacters.length))];
+        console.log(retVal)
     }
     return retVal;
 }
